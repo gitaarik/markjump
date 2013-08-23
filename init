@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $OSTYPE == "darwin12" ]]; then
+    dir=$(dirname $0)
+    path=$PWD${dir:1}
+else
+    path=$(dirname $(readlink -f $0))
+fi
+
+mkdir -p ~/.bash_plugins
+ln -s "$path"/markjump ~/.bash_plugins/markjump
