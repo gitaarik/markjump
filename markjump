@@ -18,3 +18,12 @@ function unmark {
 function marks {
     ls -l "$MARKPATH" | tail -n +2 | awk '{ print $(NF -2), $(NF -1), $(NF) }'
 }
+
+_completemarks() {
+    local curw=${COMP_WORDS[COMP_CWORD]}
+    local wordlist=$(ls $MARKPATH)
+    COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+    return 0
+}
+
+complete -F _completemarks jump unmark
