@@ -8,7 +8,12 @@ function jump {
 }
 
 function mark { 
-    ln -s "$(pwd)" "$MARKPATH/$1"
+    ln -s "$(pwd)" "$MARKPATH/$1" 2> /dev/null || echo "Mark already exists. Use 'remark' instead."
+}
+
+function remark {
+    unmark "$1"
+    mark "$1"
 }
 
 function unmark { 
